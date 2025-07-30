@@ -1,14 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LeeLee 香氣人格測驗</title>
+  <title>LeeLee Scent Studio｜人格香氣測驗</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="root"></div>
+  <header>
+    <h1>LeeLee Scent Studio</h1>
+    <p>請依直覺回答下列問題，探索你專屬的人格香氣。</p>
+  </header>
+
+  <form id="quiz-form">
+    <div class="question">
+      <h2>1. 當你有一個難得的空閒午後，你會選擇？</h2>
+      <label><input type="radio" name="q1" value="citrus" /> 約朋友去郊外走走</label>
+      <label><input type="radio" name="q1" value="woody" /> 在家安靜看一本書</label>
+      <label><input type="radio" name="q1" value="floral" /> 沖個熱水澡配輕音樂</label>
+      <label><input type="radio" name="q1" value="earthy" /> 做瑜伽或接觸自然</label>
+      <label><input type="radio" name="q1" value="sweet" /> 做點甜點或手作</label>
+      <label><input type="radio" name="q1" value="soap" /> 收拾房間、洗洗衣服</label>
+    </div>
+
+    <!-- Q2~Q6 請見 script.js 裡的邏輯對應 -->
+
+    <button type="submit">查看香氣結果</button>
+  </form>
+
+  <section id="result" class="hidden"></section>
+
+  <footer>
+    <p>© 2025 LeeLee Scent Studio</p>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
