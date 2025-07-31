@@ -60,90 +60,37 @@ const results = {
   "柑橘木質": {
     title: "溫暖柑橘木質調",
     image: "images/citrus.jpg",
-    description: "你散發著令人安心的力量，像日光穿透林間，予人溫暖與希望。你的香氣帶有柑橘的清新與木質的沉穩，總能令人放鬆與依賴。"
+    description: "你散發著令人安心的力量，像日光穿透林間，予人溫暖與希望。你的香氣帶有柑橘的清新與木質的沉穩，總能令人放鬆與依賴。",
+    analysis: "你是個樂觀進取的人，擁有積極向上的態度，喜歡與人互動，也具備領導魅力。你重視實際與真誠，行動力十足，深受他人信賴。"
   },
   "花果琥珀": {
     title: "柔和花果琥珀調",
     image: "images/amber.jpg",
-    description: "你如同午後果茶般溫柔而具有層次，擁有細膩的情感與迷人的魅力，是人群中的療癒系靈魂。"
+    description: "你如同午後果茶般溫柔而具有層次，擁有細膩的情感與迷人的魅力，是人群中的療癒系靈魂。",
+    analysis: "你內斂而富有同理心，喜歡照顧他人的情緒，善於建立深層連結，是朋友眼中的暖心存在。"
   },
   "辛香東方": {
     title: "神秘辛香東方調",
     image: "images/spicy.jpg",
-    description: "你擁有無法被輕易定義的魅力，散發著探索與冒險的精神。就像異國的香料氣味，神秘又令人著迷。"
+    description: "你擁有無法被輕易定義的魅力，散發著探索與冒險的精神。就像異國的香料氣味，神秘又令人著迷。",
+    analysis: "你有強烈的個人意識與自我風格，不怕與眾不同，勇於挑戰規則，是個創造者與突破者。"
   },
   "水感清新": {
     title: "清新水感調",
     image: "images/aqua.jpg",
-    description: "你如同海風般自由、透明而不造作，總是帶來一股讓人安心的氣場，是身邊人的清流存在。"
+    description: "你如同海風般自由、透明而不造作，總是帶來一股讓人安心的氣場，是身邊人的清流存在。",
+    analysis: "你崇尚自由、真誠且獨立，善於傾聽與包容，能為人帶來安定感與靈感。"
   },
   "琥珀皮革": {
     title: "復古琥珀皮革調",
     image: "images/leather.jpg",
-    description: "你擁有深沉穩重的靈魂，像老屋裡的皮革與書香，充滿故事與魅力，讓人忍不住想一探究竟。"
+    description: "你擁有深沉穩重的靈魂，像老屋裡的皮革與書香，充滿故事與魅力，讓人忍不住想一探究竟。",
+    analysis: "你注重細節、喜歡深度交流，有豐富的人生經歷與智慧，常是他人尋求建議的對象。"
   },
   "綠意花香": {
     title: "自然綠意花香調",
     image: "images/green.jpg",
-    description: "你與自然有著深刻連結，如同森林與晨霧中盛開的花朵，清新脫俗、充滿生機與療癒力。"
+    description: "你與自然有著深刻連結，如同森林與晨霧中盛開的花朵，清新脫俗、充滿生機與療癒力。",
+    analysis: "你內心純粹而富有創造力，擁有療癒他人的天賦，是團隊中的平衡與穩定力量。"
   }
 };
-
-const startBtn = document.getElementById("start-btn");
-const introSection = document.getElementById("intro");
-const quizSection = document.getElementById("quiz");
-const resultSection = document.getElementById("result");
-const questionContainer = document.getElementById("question-container");
-const resultContent = document.getElementById("result-content");
-const restartBtn = document.getElementById("restart-btn");
-
-let currentQuestionIndex = 0;
-let typeScores = {};
-
-startBtn.addEventListener("click", () => {
-  introSection.classList.remove("active");
-  quizSection.classList.add("active");
-  showQuestion();
-});
-
-function showQuestion() {
-  const q = questions[currentQuestionIndex];
-  questionContainer.innerHTML = `<h2>${q.question}</h2>`;
-  q.answers.forEach(answer => {
-    const btn = document.createElement("button");
-    btn.classList.add("answer-btn");
-    btn.textContent = answer.text;
-    btn.addEventListener("click", () => selectAnswer(answer.type));
-    questionContainer.appendChild(btn);
-  });
-}
-
-function selectAnswer(type) {
-  typeScores[type] = (typeScores[type] || 0) + 1;
-  currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
-    showQuestion();
-  } else {
-    showResult();
-  }
-}
-
-function showResult() {
-  quizSection.classList.remove("active");
-  resultSection.classList.add("active");
-
-  const topType = Object.entries(typeScores).sort((a, b) => b[1] - a[1])[0][0];
-  const result = results[topType];
-  resultContent.innerHTML = `
-    <img src="${result.image}" alt="${result.title}" />
-    <h2>${result.title}</h2>
-    <p>${result.description}</p>
-  `;
-}
-
-restartBtn.addEventListener("click", () => {
-  currentQuestionIndex = 0;
-  typeScores = {};
-  resultSection.classList.remove("active");
-  introSection.classList.add("active");
-});
