@@ -1,17 +1,12 @@
+
 // script.js
 const questions = [
   {
-    question: "你在一個陌生的城市度過假期時，你最想要的氛圍是？",
-    answers: [
-      { text: "熱鬧人群與市集的活力感", type: "柑橘木質" },
-      { text: "午後巷弄咖啡香的寧靜", type: "花果琥珀" },
-      { text: "充滿異國香料的市集味道", type: "辛香東方" },
-      { text: "海風吹拂下的自由氣息", type: "水感清新" }
-    ]
-  },
+@@ -13,13 +12,48 @@ const questions = [
   {
     question: "以下哪一種畫面最能描繪你的理想午後？",
     answers: [
+      { text: "陽光灑落的木質書房與咖啡香", type: "木質調" },
       { text: "陽光灑落的木質書房與咖啡香", type: "柑橘木質" },
       { text: "大自然中的青草與花香", type: "綠意花香" },
       { text: "老屋裡熟悉的皮革與香草氣味", type: "琥珀皮革" },
@@ -54,6 +49,7 @@ const questions = [
       { text: "清晨霧氣裡的青草與水氣", type: "水感清新" }
     ]
   }
+  // 題目 3~6 可在此補上
 ];
 
 const results = {
@@ -94,3 +90,69 @@ const results = {
     analysis: "你內心純粹而富有創造力，擁有療癒他人的天賦，是團隊中的平衡與穩定力量。"
   }
 };
+
+
+const startBtn = document.getElementById("start-btn");
+const introSection = document.getElementById("intro");
+const quizSection = document.getElementById("quiz");
+const resultSection = document.getElementById("result");
+const questionContainer = document.getElementById("question-container");
+const resultContent = document.getElementById("result-content");
+const restartBtn = document.getElementById("restart-btn");
+
+let currentQuestionIndex = 0;
+let typeScores = {};
+
+document.getElementById("start-btn").addEventListener("click", () => {
+  document.getElementById("intro").classList.remove("active");
+  document.getElementById("quiz").classList.add("active");
+startBtn.addEventListener("click", () => {
+  introSection.classList.remove("active");
+  quizSection.classList.add("active");
+  showQuestion();
+});
+
+function showQuestion() {
+  const q = questions[currentQuestionIndex];
+  const container = document.getElementById("question-container");
+  container.innerHTML = `<h2>${q.question}</h2>`;
+  questionContainer.innerHTML = `<h2>${q.question}</h2>`;
+  q.answers.forEach(answer => {
+    const btn = document.createElement("button");
+    btn.classList.add("answer-btn");
+    btn.textContent = answer.text;
+    btn.addEventListener("click", () => selectAnswer(answer.type));
+    container.appendChild(btn);
+    questionContainer.appendChild(btn);
+  });
+}
+
+@@ -69,22 +129,21 @@ function selectAnswer(type) {
+}
+
+function showResult() {
+  document.getElementById("quiz").classList.remove("active");
+  document.getElementById("result").classList.add("active");
+  quizSection.classList.remove("active");
+  resultSection.classList.add("active");
+
+  const topType = Object.entries(typeScores).sort((a, b) => b[1] - a[1])[0][0];
+  const result = results[topType];
+  const container = document.getElementById("result-content");
+  container.innerHTML = `
+  resultContent.innerHTML = `
+    <img src="${result.image}" alt="${result.title}" />
+    <h2>${result.title}</h2>
+    <p>${result.description}</p>
+  `;
+}
+
+document.getElementById("restart-btn").addEventListener("click", () => {
+restartBtn.addEventListener("click", () => {
+  currentQuestionIndex = 0;
+  typeScores = {};
+  document.getElementById("result").classList.remove("active");
+  document.getElementById("intro").classList.add("active");
+  resultSection.classList.remove("active");
+  introSection.classList.add("active");
+});
