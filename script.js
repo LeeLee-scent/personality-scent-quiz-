@@ -67,35 +67,42 @@ const results = {
     title: "靜心之徑",
     image: "images/result_cloud.jpg",
     hashtags: ["#思緒之流", "#靜心覺察", "#內在智慧"],
-    description: "親愛的靈魂旅人，你的選擇顯示，你正處於一個需要**『內在靜心』**的階段。你的心智或許正在尋找清晰，渴望從雜亂的思緒中解脫。這不是性格，而是一個邀請：邀請你停下來，為自己創造一個寧靜的空間，讓你的智慧之光重新閃耀。",
-    analysis: "你的能量此刻與奧修禪卡**『靜心』(Meditation)**的牌卡相應。這張牌提醒你，真正的力量來自於放空與覺察。**木質調與草本香氣**，如檀香、雪松、迷迭香，能為你創造一個堅實的靜心空間，幫助你紮根於當下，讓心靈像一片晴朗的天空般澄澈。"
+    spiritual_message: "親愛的靈魂旅人，你的內在此刻正在尋求一份全然的安靜與澄澈。你的心智或許正被繁雜的訊息所淹沒，這是一個來自你靈魂深處的邀請：停下來，回到內在的家，為自己清理出一個能夠清晰思考的空間。",
+    energy_insight: "你的能量此刻與奧修禪卡**『靜心』(Meditation)**的牌卡相應。你不需要向外尋找答案，因為所有的智慧都已在你心中。這張牌提醒你，真正的力量來自於放空與覺察。",
+    fragrance_guide: "這款香氣將是你的心靈地圖。**木質調與草本香氣**，如**檀香、雪松、迷迭香**，能為你創造一個堅實的靜心空間，幫助你紮根於當下，讓心靈像一片晴朗的天空般澄澈。",
+    mindful_ritual: "每日清晨，點燃此香氛，靜坐三分鐘。什麼都不做，只是專注於呼吸和香氣，感受當下的存在。讓香氣引導你，慢慢回到內在的平靜核心。"
   },
   water: {
     title: "療癒之泉",
     image: "images/result_water.jpg",
     hashtags: ["#情感之海", "#流動之心", "#愛的連結"],
-    description: "親愛的靈魂旅人，你正經歷一場深層的內在清洗。或許有些情感的烏雲籠罩，或是過往的疲憊正在湧現。這不是軟弱的時刻，而是一個珍貴的訊號：你的靈魂渴望被**『療癒與滋養』**，並與內在的愛重新連結。",
-    analysis: "你的能量此刻與奧修禪卡**『內在之聲』(Inner Voice)**的牌卡相應。這張牌提醒你，向內聆聽，你的直覺會指引你走向平靜。**花香調與水生香氣**，如玫瑰、茉莉、橙花，能像輕柔的流水般，安撫你緊繃的神經，並滋養你的心靈，讓你感到被愛與支持。"
+    spiritual_message: "親愛的靈魂旅人，你的心是一片廣闊的海洋，此刻正經歷潮汐般的起伏。或許有些情緒的烏雲籠罩，或是過往的疲憊正在湧現。這不是軟弱的時刻，而是一個珍貴的訊號：你的靈魂渴望被無條件地接納與療癒。",
+    energy_insight: "你的能量此刻與奧修禪卡**『內在之聲』(Inner Voice)**的牌卡相應。你所擁有的直覺是無價的禮物，它能指引你穿越情感的迷霧。允許自己去感受所有情緒，因為真正的療癒始於愛與接納。",
+    fragrance_guide: "這款香氣將是你的溫柔懷抱。**花香調與水生香氣**，如**玫瑰、茉莉、橙花**，能像輕柔的流水般，安撫你緊繃的神經，並滋養你的心靈，讓你感到被愛與支持。",
+    mindful_ritual: "每晚睡前，點燃此香氛，將注意力帶到你的心臟。感受每一次呼吸，並對自己說：「我愛你，我接受你所有的樣子。」讓香氣溫柔地包裹你，進入深層的休憩。"
   },
   fire: {
     title: "啟程的火焰",
     image: "images/result_fire.jpg",
     hashtags: ["#生命之火", "#行動勇氣", "#熱情創造"],
-    description: "親愛的靈魂旅人，你正站在一個充滿潛力與新冒險的起點。你的內在之火正在燃燒，充滿了勇氣與行動的渴望。這股強大的能量有時讓你過於專注於前方，而忘了停下來感受當下微風的拂過。這是一個召喚你**『勇敢躍入未知』**的時刻。",
-    analysis: "你的能量此刻與奧修禪卡**『勇氣』(Courage)**的牌卡相應。這張牌提醒你，真正的勇氣不是無所畏懼，而是允許自己去感受，然後再帶著這份感受向前。**辛辣與柑橘香氣**，如佛手柑、生薑、葡萄柚，能為你注入活力與熱情，提醒你生命的冒險充滿了喜悅與力量。"
+    spiritual_message: "親愛的靈魂旅人，你正站在一個充滿潛力與新冒險的起點。你的內在之火正在燃燒，充滿了勇氣與行動的渴望。這股強大的能量有時讓你過於專注於前方，而忘了停下來感受當下微風的拂過。這是一個召喚你**『勇敢躍入未知』**的時刻。",
+    energy_insight: "你的能量此刻與奧修禪卡**『勇氣』(Courage)**的牌卡相應。這張牌提醒你，真正的勇氣不是無所畏懼，而是允許自己去感受，然後再帶著這份感受向前。",
+    fragrance_guide: "這款香氣將是你的活力泉源。**辛辣與柑橘香氣**，如**佛手柑、生薑、葡萄柚**，能為你注入活力與熱情，提醒你生命的冒險充滿了喜悅與力量。",
+    mindful_ritual: "每日早晨，點燃此香氛，進行一個簡短的儀式。深吸一口氣，讓香氣充滿你的肺腑，然後大聲（或在心中）對自己說：「我充滿活力，我信任我的每一步。」"
   },
   rainbow: {
     title: "豐盛之林",
     image: "images/result_rainbow.jpg",
     hashtags: ["#大地之根", "#物質豐盛", "#當下滿足"],
-    description: "親愛的靈魂旅人，你正尋求一種深刻的**『穩定感』**。你可能感到有些漂浮不定，或渴望找到一個能讓你安心停泊的港灣。這是一個重新與你的根源連結，並找回內在力量的時刻。豐盛並非來自外在，而是來自你對當下的全然接納。",
-    analysis: "你的能量此刻與奧修禪卡**『豐盛』(Abundance)**的牌卡相應。這張牌提醒你，真正的豐盛來自於你與大地的連結。**麝香與溫暖木質調**，如岩蘭草、廣藿香、琥珀，能為你提供堅實的支撐，讓你感到腳踏實地，並在簡單的物質生活中找到內在的滿足與平靜。"
+    spiritual_message: "親愛的靈魂旅人，你正尋求一種深刻的**『穩定感』**。你可能感到有些漂浮不定，或渴望找到一個能讓你安心停泊的港灣。這是一個重新與你的根源連結，並找回內在力量的時刻。",
+    energy_insight: "你的能量此刻與奧修禪卡**『豐盛』(Abundance)**的牌卡相應。這張牌提醒你，真正的豐盛來自於你與大地的連結。當你與自己的根源相連，你便能體驗到生命中的富足與圓滿。",
+    fragrance_guide: "這款香氣將是你的心靈庇護所。**麝香與溫暖木質調**，如**岩蘭草、廣藿香、琥珀**，能為你提供堅實的支撐，讓你感到腳踏實地，並在簡單的物質生活中找到內在的滿足與平靜。",
+    mindful_ritual: "每天結束一天行程後，點燃此香氛，靜坐五分鐘。感受你的身體與呼吸，將所有的擔憂都交給香氣。對自己說：「我感到安全，我紮根於此。」"
   }
 };
 
 // State
 let current = 0;
-// 關鍵修正：將計分變數名稱改為奧修禪卡花色
 let scores = { cloud: 0, water: 0, fire: 0, rainbow: 0 };
 const total = questions.length;
 let currentSelection = null;
@@ -112,10 +119,15 @@ const nextBtn = document.getElementById('nextBtn');
 const resultSection = document.getElementById('result');
 const resultTitle = document.getElementById('resultTitle');
 const resultImage = document.getElementById('resultImage');
-const resultDesc = document.getElementById('resultDesc');
 const resultHashtags = document.getElementById('resultHashtags');
 const restartBtn = document.getElementById('restartBtn');
 const shareBtn = document.getElementById('shareBtn');
+
+// 新增結果頁面元素
+const resultSpiritualMessage = document.getElementById('resultSpiritualMessage');
+const resultEnergyInsight = document.getElementById('resultEnergyInsight');
+const resultFragranceGuide = document.getElementById('resultFragranceGuide');
+const resultMindfulRitual = document.getElementById('resultMindfulRitual');
 
 const logo = document.querySelector('.site-header .logo');
 const introTitleContainer = document.querySelector('.intro-title-container');
@@ -123,7 +135,6 @@ const introTitleLeft = document.querySelector('.intro-title-left');
 const introTitleRight = document.querySelector('.intro-title-right');
 const introTextWrapper = document.querySelector('.intro-text-wrapper');
 
-// 動畫效果
 function typeText(element, text, speed = 50, callback) {
   element.textContent = '';
   let i = 0;
@@ -145,7 +156,7 @@ function animateIntroPage() {
   logo.addEventListener('animationend', () => {
     introTitleContainer.style.opacity = 1;
     typeText(introTitleLeft, '測一測', 100, () => {
-      typeText(introTitleRight, '你的風格香', 100, () => {
+      typeText(introTitleRight, '你的心靈香氣', 100, () => {
         introTextWrapper.style.animation = 'fadeIn 1s forwards';
         startBtn.style.animation = 'fadeIn 1s forwards';
       });
@@ -227,12 +238,13 @@ function showResult() {
   // 更新結果頁面
   resultTitle.textContent = r.title;
   resultImage.src = r.image;
-
-  // 顯示標籤
   resultHashtags.innerHTML = r.hashtags.map(tag => `<div>${tag}</div>`).join('');
-
-  // 結合描述和分析
-  resultDesc.innerHTML = `<p>${r.description}</p><p>${r.analysis}</p>`;
+  
+  // 填入新的分層次回饋
+  resultSpiritualMessage.innerHTML = r.spiritual_message;
+  resultEnergyInsight.innerHTML = `**能量洞見：**${r.energy_insight}`;
+  resultFragranceGuide.innerHTML = `**香氛指引：**${r.fragrance_guide}`;
+  resultMindfulRitual.innerHTML = `**禪心儀式：**${r.mindful_ritual}`;
 }
 
 restartBtn.addEventListener('click', () => {
