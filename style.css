@@ -268,35 +268,3 @@ body {
   from {
     transform: translateY(20px);
     opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.typewriter-effect {
-  overflow: hidden; /* Hide the overflow */
-  border-right: 2px solid var(--primary); /* The typewriter cursor */
-  white-space: nowrap; /* Keep text on a single line */
-  animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: var(--primary);
-  }
-}
