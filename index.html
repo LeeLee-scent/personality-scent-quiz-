@@ -1,71 +1,69 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LeeLee Scent Studio — 測一測你的心靈香氣</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LeeLee Scent Studio — 測一測你的心靈香氣</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header">
-    <div class="card">
-      <img src="images/logo.png" alt="LeeLee Scent Studio" class="logo"/>
-    </div>
-  </header>
+  <header class="site-header">
+    <div class="card">
+      <img src="images/logo.png" alt="LeeLee Scent Studio" class="logo"/>
+    </div>
+  </header>
 
-  <main class="container" id="app">
-    <section id="intro" class="card">
-      <div class="intro-title-container">
-        <div class="intro-title-left">測一測</div>
-        <div class="intro-title-right">你的心靈香氣</div>
-      </div>
-      <div class="intro-text-wrapper">
-        <p class="lead">香氣，不只是一種氣味，更是心靈的語言。</p>
-        <p class="lead">它能帶我們回到當下，喚醒沉睡的記憶，</p>
-        <p class="lead">與內在最真實的感受重新連結。</p>
-        <p class="lead">每一次的選擇，都反映出靈魂此刻的渴望。</p>
-        <p class="lead">這是一場關於自我覺察的旅程，</p>
-        <p class="lead">讓香氣成為你的指引，探索你當下所需的內在能量。</p>
-      </div>
-      <button id="startBtn" class="btn primary">開始測驗</button>
-    </section>
+  <main class="container" id="app">
+    <section id="intro" class="card">
+      <div class="intro-title-container">
+        <div class="intro-title-left">測一測</div>
+        <div class="intro-title-right">你的心靈香氣</div>
+      </div>
+      <div class="intro-text-wrapper">
+        <p class="lead">香氣，不只是一種氣味，更是心靈的語言。</p>
+        <p class="lead">它能帶我們回到當下，喚醒沉睡的記憶，</p>
+        <p class="lead">與內在最真實的感受重新連結。</p>
+        <p class="lead">每一次的選擇，都反映出靈魂此刻的渴望。</p>
+        <p class="lead">這是一場關於自我覺察的旅程，</p>
+        <p class="lead">讓香氣成為你的指引，探索你當下所需的內在能量。</p>
+      </div>
+      <button id="startBtn" class="btn primary">開始測驗</button>
+    </section>
 
-    <section id="quiz" class="card hidden">
-      <div class="progress"><span id="progressText">第 1 題 / 6 題</span></div>
-      <img id="questionImage" src="images/q1.jpg" alt="" class="qimage"/>
-      <h2 id="questionTitle"></h2>
-      <div id="answers" class="answers"></div>
-      <div class="nav">
-        <button id="nextBtn" class="btn" style="display:none;">下一題</button>
-    </div>
-    </section>
+    <section id="quiz" class="card hidden">
+      <div class="progress"><span id="progressText">第 1 題 / 6 題</span></div>
+      <img id="questionImage" src="images/q1.jpg" alt="" class="qimage"/>
+      <h2 id="questionTitle"></h2>
+      <div id="answers" class="answers"></div>
+      <div class="nav">
+        <button id="nextBtn" class="btn" style="display:none;">下一題</button>
+      </div>
+    </section>
 
-    <section id="result" class="card hidden">
-      <div class="result-header">
-        <h2 class="result-subtitle">你的心靈指引是</h2>
-        <h1 id="resultTitle" class="result-title"></h1>
-      </div>
-      <div class="result-image-container">
-        <img id="resultImage" src="" alt="" class="result-main-image"/>
-        <div id="resultHashtags" class="result-hashtags"></div>
-      </div>
-      <div id="resultSpiritualMessage" class="result-desc-text"></div>
-      <div id="resultEnergyInsight" class="result-desc-text"></div>
-      <div id="resultFragranceGuide" class="result-desc-text"></div>
-      <div id="resultMindfulRitual" class="result-desc-text"></div>
+    <section id="result" class="card hidden">
+      <div class="result-header">
+        <h2 class="result-subtitle">你的心靈指引是</h2>
+        <h1 id="resultTitle" class="result-title"></h1>
+      </div>
+      <div class="result-image-container">
+        <img id="resultImage" src="" alt="" class="result-main-image"/>
+        <div id="resultHashtags" class="result-hashtags"></div>
+      </div>
+      <div id="resultDesc" class="result-desc-text">
+        <div class="result-separator"></div>
+      </div>
+      <div class="result-actions">
+        <button id="restartBtn" class="btn primary">重新測驗</button>
+        <button id="shareBtn" class="btn">分享結果</button>
+      </div>
+    </section>
+  </main>
 
-      <div class="result-actions">
-        <button id="restartBtn" class="btn primary">重新測驗</button>
-        <button id="shareBtn" class="btn">分享結果</button>
-      </div>
-    </section>
-  </main>
+  <footer class="site-footer">
+    <small>© LEELEE Scent Studio</small>
+  </footer>
 
-  <footer class="site-footer">
-    <small>© LEELEE Scent Studio</small>
-  </footer>
-
-  <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
