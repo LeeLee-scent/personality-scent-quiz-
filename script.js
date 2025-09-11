@@ -122,7 +122,14 @@ const resultSubtitle = document.querySelector('.result-subtitle');
 const resultTitle = document.getElementById('resultTitle');
 const resultImageContainer = document.querySelector('.result-image-container');
 const resultImage = document.getElementById('resultImage');
-const resultDesc = document.getElementById('resultDesc');
+
+// 新增的獨立結果區塊元素
+const resultSpiritualMessage = document.getElementById('resultSpiritualMessage');
+const resultEnergyInsight = document.getElementById('resultEnergyInsight');
+const resultFragranceGuide = document.getElementById('resultFragranceGuide');
+const resultMindfulRitual = document.getElementById('resultMindfulRitual');
+
+
 const resultHashtags = document.getElementById('resultHashtags');
 const restartBtn = document.getElementById('restartBtn');
 const shareBtn = document.getElementById('shareBtn');
@@ -131,7 +138,10 @@ const resultElements = [
   resultTitle,
   resultImageContainer,
   resultHashtags,
-  resultDesc,
+  resultSpiritualMessage,
+  resultEnergyInsight,
+  resultFragranceGuide,
+  resultMindfulRitual,
   restartBtn,
   shareBtn
 ];
@@ -217,23 +227,13 @@ function animateResultPage(resultData) {
   resultImage.src = preloadedImages[resultData.image].src;
   resultHashtags.innerHTML = resultData.hashtags.map(tag => `<div class="result-hashtag">${tag}</div>`).join('');
   
-  // 組合所有內容為一個單獨的 HTML 字串
-  const combinedText = `
-    <p>${resultData.spiritual_message}</p>
-    <div class="result-separator"></div>
-    <strong>能量洞見：</strong><p>${resultData.energy_insight}</p>
-    <div class="result-separator"></div>
-    <strong>香氛指引：</strong><p>${resultData.fragrance_guide}</p>
-    <div class="result-separator"></div>
-    <strong>禪心儀式：</strong><p>${resultData.mindful_ritual}</p>
-  `;
-  resultDesc.innerHTML = combinedText;
-  
-  // 移除 .typewriter-effect class，避免游標閃爍
-  resultDesc.classList.remove('typewriter-effect');
+  resultSpiritualMessage.innerHTML = `<p>${resultData.spiritual_message}</p>`;
+  resultEnergyInsight.innerHTML = `<p><strong>能量洞見：</strong>${resultData.energy_insight}</p>`;
+  resultFragranceGuide.innerHTML = `<p><strong>香氛指引：</strong>${resultData.fragrance_guide}</p>`;
+  resultMindfulRitual.innerHTML = `<p><strong>禪心儀式：</strong>${resultData.mindful_ritual}</p>`;
   
   let delay = 0;
-  [resultSubtitle, resultTitle, resultImageContainer, resultHashtags, resultDesc].forEach(element => {
+  [resultSubtitle, resultTitle, resultImageContainer, resultHashtags, resultSpiritualMessage, resultEnergyInsight, resultFragranceGuide, resultMindfulRitual].forEach(element => {
     setTimeout(() => {
       element.style.animation = 'fadeInUp 1s forwards';
     }, delay);
@@ -347,11 +347,11 @@ restartBtn.addEventListener('click', () => {
 shareBtn.addEventListener('click', () => {
   const highest = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
   const resultText = results[highest].title;
-  const shareText = `我的香氣心靈指引是【${resultText}】！快來測測看你是哪一種吧！\n${window.location.href}`;
+  const shareText = `我的心靈香氣是【${resultText}】！快來測測看你是哪一種吧！\n${window.location.href}`;
   
   if (navigator.share) {
     navigator.share({
-      title: '香氣心靈指引測驗',
+      title: '心靈香氣測驗',
       text: shareText,
       url: window.location.href
     }).catch((error) => console.log('分享失敗', error));
