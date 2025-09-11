@@ -106,6 +106,7 @@ let current = 0;
 let scores = { cloud: 0, water: 0, fire: 0, rainbow: 0 };
 const total = questions.length;
 let currentSelection = null;
+let preloadedImages = {}; 
 
 // Elements
 const intro = document.getElementById('intro');
@@ -117,157 +118,248 @@ const questionImage = document.getElementById('questionImage');
 const progressText = document.getElementById('progressText');
 const nextBtn = document.getElementById('nextBtn');
 const resultSection = document.getElementById('result');
+const resultSubtitle = document.querySelector('.result-subtitle');
 const resultTitle = document.getElementById('resultTitle');
+const resultImageContainer = document.querySelector('.result-image-container');
 const resultImage = document.getElementById('resultImage');
+const resultDesc = document.getElementById('resultDesc');
 const resultHashtags = document.getElementById('resultHashtags');
 const restartBtn = document.getElementById('restartBtn');
 const shareBtn = document.getElementById('shareBtn');
+const resultElements = [
+  resultSubtitle,
+  resultTitle,
+  resultImageContainer,
+  resultHashtags,
+  resultDesc,
+  restartBtn,
+  shareBtn
+];
 
-// 新增結果頁面元素
-const resultSpiritualMessage = document.getElementById('resultSpiritualMessage');
-const resultEnergyInsight = document.getElementById('resultEnergyInsight');
-const resultFragranceGuide = document.getElementById('resultFragranceGuide');
-const resultMindfulRitual = document.getElementById('resultMindfulRitual');
-
+// Intro Page Elements
 const logo = document.querySelector('.site-header .logo');
-const introTitleContainer = document.querySelector('.intro-title-container');
 const introTitleLeft = document.querySelector('.intro-title-left');
 const introTitleRight = document.querySelector('.intro-title-right');
 const introTextWrapper = document.querySelector('.intro-text-wrapper');
 
+// Utility Functions
 function typeText(element, text, speed = 50, callback) {
-  element.textContent = '';
-  let i = 0;
-  function typing() {
-    if (i < text.length) {
-      element.textContent += text.charAt(i);
-      i++;
-      setTimeout(typing, speed);
-    } else if (callback) {
-      callback();
-    }
-  }
-  typing();
+  element.innerHTML = ''; 
+  element.classList.add('typewriter-effect'); 
+  let i = 0;
+  function typing() {
+    if (i < text.length) {
+      if (text.charAt(i) === '<') {
+        let tagEnd = text.indexOf('>', i);
+        element.innerHTML += text.substring(i, tagEnd + 1);
+        i = tagEnd + 1;
+      } else {
+        element.innerHTML += text.charAt(i);
+        i++;
+      }
+      setTimeout(typing, speed);
+    } else {
+      element.classList.remove('typewriter-effect');
+      if (callback) callback();
+    }
+  }
+  typing();
 }
 
-function animateIntroPage() {
-  logo.style.animation = 'fadeInUp 1s forwards';
-
-  logo.addEventListener('animationend', () => {
-    introTitleContainer.style.opacity = 1;
-    typeText(introTitleLeft, '測一測', 100, () => {
-      typeText(introTitleRight, '你的心靈香氣', 100, () => {
-        introTextWrapper.style.animation = 'fadeIn 1s forwards';
-        startBtn.style.animation = 'fadeIn 1s forwards';
-      });
-    });
-  }, { once: true });
+/**
+ * 圖片預載函式
+ */
+function preloadImages() {
+  const imagePromises = Object.values(results).map(result => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = result.image;
+      img.onload = () => {
+        preloadedImages[result.image] = img;
+        resolve();
+      };
+      img.onerror = reject;
+    });
+  });
+  return Promise.all(imagePromises);
 }
 
+// Function to handle the intro page animation sequence
+async function animateIntroPage() {
+  logo.style.animation = 'fadeInUp 2s forwards';
+  startBtn.disabled = true;
+  await preloadImages();
+  
+  setTimeout(() => {
+    introTitleLeft.style.opacity = '1';
+    typeText(introTitleLeft, '測一測', 100, () => {
+      introTitleRight.style.opacity = '1';
+      typeText(introTitleRight, '你的心靈香氣', 100, () => {
+        introTextWrapper.style.animation = 'fadeIn 2s forwards';
+        setTimeout(() => {
+          startBtn.style.animation = 'fadeInUp 2s forwards';
+          startBtn.disabled = false;
+        }, 1500);
+      });
+    });
+  }, 1500);
+}
+
+// Function to animate the quiz question title
+function animateQuizQuestion(text) {
+  typeText(questionTitle, text);
+}
+
+// 分段動畫函式
+function animateResultPage(resultData) {
+  resultSubtitle.textContent = "你的心靈指引是";
+  resultTitle.textContent = resultData.title;
+  resultImage.src = preloadedImages[resultData.image].src;
+  resultHashtags.innerHTML = resultData.hashtags.map(tag => `<div class="result-hashtag">${tag}</div>`).join('');
+  
+  // 組合所有內容為一個單獨的 HTML 字串
+  const combinedText = `
+    <p>${resultData.spiritual_message}</p>
+    <div class="result-separator"></div>
+    <strong>能量洞見：</strong><p>${resultData.energy_insight}</p>
+    <div class="result-separator"></div>
+    <strong>香氛指引：</strong><p>${resultData.fragrance_guide}</p>
+    <div class="result-separator"></div>
+    <strong>禪心儀式：</strong><p>${resultData.mindful_ritual}</p>
+  `;
+  resultDesc.innerHTML = combinedText;
+  
+  // 移除 .typewriter-effect class，避免游標閃爍
+  resultDesc.classList.remove('typewriter-effect');
+  
+  let delay = 0;
+  [resultSubtitle, resultTitle, resultImageContainer, resultHashtags, resultDesc].forEach(element => {
+    setTimeout(() => {
+      element.style.animation = 'fadeInUp 1s forwards';
+    }, delay);
+    delay += 200;
+  });
+  
+  setTimeout(() => {
+    restartBtn.style.animation = 'fadeInUp 1s forwards';
+    shareBtn.style.animation = 'fadeInUp 1s forwards';
+  }, delay + 500);
+}
+
+// Event Listeners
 document.addEventListener('DOMContentLoaded', animateIntroPage);
 
 startBtn.addEventListener('click', () => {
-  intro.classList.add('hidden');
-  quiz.classList.remove('hidden');
-  current = 0;
-  scores = { cloud: 0, water: 0, fire: 0, rainbow: 0 };
-  renderQuestion();
+  intro.classList.add('hidden');
+  quiz.classList.remove('hidden');
+  current = 0;
+  scores = { cloud: 0, water: 0, fire: 0, rainbow: 0 };
+  renderQuestion();
 });
 
 function renderQuestion() {
-  const q = questions[current];
-  questionImage.src = q.image;
-  progressText.textContent = `第 ${current + 1} 題 / ${total} 題`;
-  answersDiv.innerHTML = '';
-  currentSelection = null;
-  q.answers.forEach((a) => {
-    const btn = document.createElement('button');
-    btn.className = 'answer-btn';
-    btn.textContent = a.text;
-    btn.style.color = "#3b2f2f";
-    btn.dataset.type = a.type;
-    btn.addEventListener('click', () => selectAnswer(btn));
-    answersDiv.appendChild(btn);
-  });
-  nextBtn.style.display = 'none';
-  typeText(questionTitle, q.question);
+  const q = questions[current];
+  questionImage.src = q.image;
+  progressText.textContent = `第 ${current + 1} 題 / ${total} 題`;
+  answersDiv.innerHTML = '';
+  currentSelection = null;
+  
+  q.answers.forEach((a) => {
+    const btn = document.createElement('button');
+    btn.className = 'answer-btn';
+    btn.textContent = a.text;
+    btn.dataset.type = a.type;
+    btn.addEventListener('click', () => selectAnswer(btn));
+    answersDiv.appendChild(btn);
+  });
+  nextBtn.style.display = 'none';
+  
+  animateQuizQuestion(q.question);
 }
 
 function selectAnswer(selectedBtn) {
-  const selectedType = selectedBtn.dataset.type;
-
-  answersDiv.querySelectorAll('button').forEach(b => {
-    b.classList.remove('selected');
-  });
-
-  selectedBtn.classList.add('selected');
-  currentSelection = selectedType;
-
-  if (currentSelection && current < total - 1) {
-    nextBtn.style.display = 'inline-block';
-  } else if (currentSelection && current === total - 1) {
-    nextBtn.style.display = 'inline-block';
-  } else {
-    nextBtn.style.display = 'none';
-  }
+  const selectedType = selectedBtn.dataset.type;
+  
+  answersDiv.querySelectorAll('button').forEach(b => {
+    b.classList.remove('selected');
+  });
+  
+  selectedBtn.classList.add('selected');
+  currentSelection = selectedType;
+  
+  if (currentSelection) {
+    nextBtn.style.display = 'inline-block';
+  }
 }
 
 nextBtn.addEventListener('click', () => {
-  if (currentSelection) {
-    scores[currentSelection]++;
-    current++;
-    if (current < total) {
-      renderQuestion();
-    } else {
-      showResult();
-    }
-  }
+  if (currentSelection) {
+    scores[currentSelection]++;
+    current++;
+    if (current < total) {
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
 });
 
-
 function showResult() {
-  quiz.classList.add('hidden');
-  resultSection.classList.remove('hidden');
-  let highest = 'cloud';
-  let max = -1;
-  for (const k in scores) {
-    if (scores[k] > max) { max = scores[k]; highest = k; }
-  }
-  const r = results[highest];
-
-  // 更新結果頁面
-  resultTitle.textContent = r.title;
-  resultImage.src = r.image;
-  resultHashtags.innerHTML = r.hashtags.map(tag => `<div>${tag}</div>`).join('');
-  
-  // 填入新的分層次回饋
-  resultSpiritualMessage.innerHTML = r.spiritual_message;
-  resultEnergyInsight.innerHTML = `**能量洞見：**${r.energy_insight}`;
-  resultFragranceGuide.innerHTML = `**香氛指引：**${r.fragrance_guide}`;
-  resultMindfulRitual.innerHTML = `**禪心儀式：**${r.mindful_ritual}`;
+  quiz.classList.add('hidden');
+  resultSection.classList.remove('hidden');
+  
+  let highest = 'cloud';
+  let max = -1;
+  for (const k in scores) {
+    if (scores.hasOwnProperty(k) && scores[k] > max) {
+      max = scores[k];
+      highest = k;
+    }
+  }
+  const r = results[highest];
+  animateResultPage(r);
 }
 
 restartBtn.addEventListener('click', () => {
-  resultSection.classList.add('hidden');
-  intro.classList.remove('hidden');
+  resultSection.classList.add('hidden');
+  intro.classList.remove('hidden');
+  
+  resultElements.forEach(element => {
+    element.style.animation = 'none';
+    element.style.opacity = '0';
+  });
+  
+  logo.style.animation = 'none';
+  introTitleLeft.textContent = '';
+  introTitleRight.textContent = '';
+  introTextWrapper.style.animation = 'none';
+  startBtn.style.animation = 'none';
+  
+  logo.style.animation = '';
+  introTitleLeft.style.opacity = '0';
+  introTitleRight.style.opacity = '0';
+  introTextWrapper.style.opacity = '0';
+  startBtn.style.opacity = '0';
+  
+  animateIntroPage();
 });
 
 shareBtn.addEventListener('click', () => {
-  const highest = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-  const resultText = results[highest].title;
-  const shareText = `我的香氣心靈指引是【${resultText}】！快來測測看你是哪一種吧！\n${window.location.href}`;
-
-  if (navigator.share) {
-    navigator.share({
-      title: '香氣心靈指引測驗',
-      text: shareText,
-      url: window.location.href
-    }).catch((error) => console.log('分享失敗', error));
-  } else {
-    navigator.clipboard.writeText(shareText).then(() => {
-      alert('結果已複製到剪貼簿，可以去貼給朋友囉！');
-    }).catch((err) => {
-      console.error('無法複製到剪貼簿', err);
-    });
-  }
+  const highest = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+  const resultText = results[highest].title;
+  const shareText = `我的香氣心靈指引是【${resultText}】！快來測測看你是哪一種吧！\n${window.location.href}`;
+  
+  if (navigator.share) {
+    navigator.share({
+      title: '香氣心靈指引測驗',
+      text: shareText,
+      url: window.location.href
+    }).catch((error) => console.log('分享失敗', error));
+  } else {
+    navigator.clipboard.writeText(shareText).then(() => {
+      alert('結果已複製到剪貼簿，可以去貼給朋友囉！');
+    }).catch((err) => {
+      console.error('無法複製到剪貼簿', err);
+    });
+  }
 });
